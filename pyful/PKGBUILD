@@ -17,7 +17,7 @@ depends=('python2' 'ncurses')   # somehow not work on python3
 source=("http://pypi.python.org/packages/source/p/${pkgname}/${pkgname}-${pkgver}.zip")
 md5sums=('65cf009735b0b04a309725b00be72439')
 
-build() {
+package() {
   cd $srcdir/${pkgname}-${pkgver}
   python2 setup.py install --root=${pkgdir}
 }
