@@ -1,0 +1,38 @@
+# Maintainer: 10sr <your email>
+
+pkgname=pyful-git
+pkgver=20121112
+pkgrel=1
+pkgdesc="Python file management utility."
+arch=('any')
+url="https://github.com/anmitsu/pyful"
+license=('GPLv2')
+#groups=allyourbase
+depends=('python2' 'ncurses')   # somehow not work on python3
+makedepends=('git')
+#optdepends=('derp-toolbar: a browser plugin')
+
+#provides=('pyful')
+conflicts=('pyful')
+
+_gitroot=https://github.com/anmitsu/pyful.git
+_gitname=$pkgname
+
+build() {
+  cd "$srcdir"
+  msg "Connecting to GIT server...."
+
+  if [[ -d "$_gitname" ]]; then
+    cd "$_gitname" && git pull origin
+    msg "The local files are updated."
+  else
+    git clone "$_gitroot" "$_gitname"
+  fi
+
+  msg "GIT checkout done or server timeout"
+}
+
+package() {
+  cd $srcdir/$_gitname
+  python2 setup.py install --root=${pkgdir}
+}
