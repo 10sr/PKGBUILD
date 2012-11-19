@@ -12,7 +12,7 @@ depends=('python' 'ncurses')
 makedepends=('git')
 #optdepends=('derp-toolbar: a browser plugin')
 
-#provides=('pyful')
+provides=('pyful')
 conflicts=('pyful')
 
 _gitroot=https://github.com/anmitsu/pyful.git
