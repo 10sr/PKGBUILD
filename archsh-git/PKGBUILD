@@ -1,0 +1,38 @@
+# Maintainer: 10sr <your email>
+
+pkgname=archsh-git
+pkgver=20121213
+pkgrel=1
+pkgdesc="Shell for Archive."
+arch=('any')
+url="https://github.com/10sr/archsh_py"
+license=('PD')
+#groups=allyourbase
+depends=('python')
+makedepends=('git')
+#optdepends=('derp-toolbar: a browser plugin')
+
+provides=('archsh')
+conflicts=('archsh')
+
+_gitroot=https://github.com/10sr/archsh_py.git
+_gitname=$pkgname
+
+build() {
+  cd "$srcdir"
+  msg "Connecting to GIT server...."
+
+  if [[ -d "$_gitname" ]]; then
+    cd "$_gitname" && git pull origin
+    msg "The local files are updated."
+  else
+    git clone --depth 1 "$_gitroot" "$_gitname"
+  fi
+
+  msg "GIT checkout done or server timeout"
+}
+
+package() {
+  cd $srcdir/$_gitname
+  python setup.py install --root=${pkgdir}
+}
