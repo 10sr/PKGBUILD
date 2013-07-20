@@ -1,0 +1,46 @@
+# Maintainer: 10sr <your email>
+
+_pkgname=wkhtmltopdf
+pkgname=$_pkgname-static
+pkgver=0.11.0_rc1
+pkgrel=1
+
+provides=($_pkgname)
+conflicts=($_pkgname)
+
+pkgdesc="Convert html to pdf using webkit (qtwebkit)"
+arch=(i686 x86_64)
+url="http://code.google.com/p/$_pkgname"
+license=('GNU Lesser GPL')
+#groups=allyourbase
+depends=("libx11")
+#makedepends=('git')
+#optdepends=('derp-toolbar: a browser plugin')
+
+if test "$CARCH" = "i686"
+then
+  _carch=i386
+  sha1sums=("30e42234c4570ab2d6cad5f6ef68b6b57ec2f0c8")
+elif test "$CARCH" = "x86_64"
+then
+  _carch=amd64
+  sha1sums=("1f5a9ed45c029055b2770d56ec31c890a3e2d33f")
+fi
+source=("http://$_pkgname.googlecode.com/files/$_pkgname-$pkgver-static-$_carch.tar.bz2")
+
+build() {
+  cd "$srcdir"
+  ./$_pkgname-$_carch --manpage | gzip >$_pkgname.1.gz
+  cp ./$_pkgname-$_carch ./$_pkgname
+}
+
+package() {
+  echo install -Dm 755 "$srcdir/$_pkgname-$_carch" "$pkgdir/usr/bin/$_pkgname"
+  install -d "$pkgdir/usr/bin"
+  # THIS DOES NOT WORK!!!!!!!!!!
+  # $pkgdir/usr/bin/wkhtmltopdf abort with message "Killed" !!!!!!!!!!!
+  # WHAT HAPPENING???????????????????????????????????????????????????
+  cp "$srcdir/$_pkgname" "$pkgdir/usr/bin/"
+  echo install -Dm 644 "$srcdir/$_pkgname.1.gz" "$pkgdir/usr/share/man/man1/$_pkgname.1.gz"
+  install -Dm 644 "$srcdir/$_pkgname.1.gz" "$pkgdir/usr/share/man/man1/$_pkgname.1.gz"
+}
