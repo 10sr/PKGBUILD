@@ -35,12 +35,15 @@ build() {
 }
 
 package() {
-  echo install -Dm 755 "$srcdir/$_pkgname-$_carch" "$pkgdir/usr/bin/$_pkgname"
-  install -d "$pkgdir/usr/bin"
+  echo "$srcdir/$_pkgname-$_carch" \> "$pkgdir/usr/bin/$_pkgname"
   # THIS DOES NOT WORK!!!!!!!!!!
   # $pkgdir/usr/bin/wkhtmltopdf abort with message "Killed" !!!!!!!!!!!
   # WHAT HAPPENING???????????????????????????????????????????????????
-  cp "$srcdir/$_pkgname" "$pkgdir/usr/bin/"
-  echo install -Dm 644 "$srcdir/$_pkgname.1.gz" "$pkgdir/usr/share/man/man1/$_pkgname.1.gz"
+  install -Dm 755 "$srcdir/$_pkgname-$_carch" "$pkgdir/usr/bin/$_pkgname"
+  # install -d "$pkgdir/usr/bin"
+  # cat "$srcdir/$_pkgname" >"$pkgdir/usr/bin/$_pkgname"
+  # chmod +x "$pkgdir/usr/bin/$_pkgname"
+  cmp "$srcdir/$_pkgname"  "$pkgdir/usr/bin/$_pkgname"
+  "$pkgdir/usr/bin/$_pkgname" -V
   install -Dm 644 "$srcdir/$_pkgname.1.gz" "$pkgdir/usr/share/man/man1/$_pkgname.1.gz"
 }
