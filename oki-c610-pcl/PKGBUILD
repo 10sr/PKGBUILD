@@ -1,0 +1,32 @@
+# Maintainer: 10sr
+# Contributor: Jakub Schmidtke <sjakub-at-gmail.com>
+
+pkgname=oki-610-ppd
+pkgver=1.0
+pkgrel=1
+pkgdesc="CUPS drivers for OKI C610dn C610dn2 printers"
+arch=(any)
+#url="http://www.okidata.com/mkt/html/nf/Drivers.html"
+url="http://www.okidata.co.jp/solution/unix/ppd/610_e.html"
+license=('custom:okidatalicense')
+depends=('cups' 'ghostscript' 'coreutils')
+source=("http://www.okidata.co.jp/solution/unix/cups_ppds/OKC610_a.ppd.gz")
+sha1sums=('695f15aeb98dadbd7ffdf2790f084b39b8812a0b')
+
+_ppdname=OKC610_a.ppd
+
+build(){
+  cd ${srcdir}
+
+  #sed -i 's|/usr/bin/cut|/bin/cut|' rastertookimonochrome
+  #sed -i 's|/usr/bin/tr|/bin/tr|' rastertookimonochrome
+}
+
+package(){
+
+  #mkdir -p ${pkgdir}/usr/lib/cups/filter
+  #mkdir -p ${pkgdir}/usr/share/cups/model
+
+  #install -m 755 rastertookimonochrome ${pkgdir}/usr/lib/cups/filter/rastertookimonochrome || return 1
+  install -Dm 644 $_ppdname ${pkgdir}/usr/share/cups/model/$_ppdname
+}
