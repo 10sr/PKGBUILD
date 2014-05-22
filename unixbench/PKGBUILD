@@ -1,0 +1,34 @@
+# Maintainer: 10sr <8slashes+git [at] gmail [dot] com>
+
+# Have problems when running the benchmark
+
+pkgname=unixbench
+pkgver=5.1.3
+pkgrel=1
+pkgdesc="A Unix benchmark suite"
+arch=('i686', 'x86_64')
+url="https://byte-unixbench.googlecode.com"
+license=('GPL2')
+source=("https://byte-unixbench.googlecode.com/files/UnixBench$pkgver.tgz"
+        "unixbench.sh")
+
+md5sums=('21edc4a9e41ad1f9b0297d7b6d45c99a'
+         'ec5ece7e75bf0d6623306522c6dd7300')
+
+prepare(){
+    cd "$srcdir/UnixBench"
+    # for enabling graphic tests
+    # compilation failed!
+    # sed -i 's/^# GRAPHIC_TESTS = defined$/GRAPHIC_TESTS = defined/' Makefile
+}
+
+build(){
+    cd "$srcdir/UnixBench"
+    make
+}
+
+package(){
+    install -d "$pkgdir/opt"
+    cp -R "$srcdir/UnixBench" "$pkgdir/opt/unixbench"
+    install -Dm 755 "$srcdir/unixbench.sh" "$pkgdir/usr/bin/unixbench"
+}
