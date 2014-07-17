@@ -2,8 +2,8 @@
 
 pkgname=ansible-docs-git
 pkgdesc="Ansible HTML documentation"
-pkgver=20140717
-pkgrel=2
+pkgver=20140718
+pkgrel=1
 arch=('any')
 url="https://github.com/ansible/ansible"
 license=('GPL3')                # true?
@@ -17,13 +17,16 @@ pkgver() {
 }
 
 prepare() {
-    cd "ansible/docsite"
-    # sed -i 's|^#!/usr/bin/env python|#!/usr/bin/env python2|' build-site.py
-    sed -i 's|css/theme.min.css|css/theme.css|' _themes/srtd/theme.conf
+    find "$srcdir"/ansible -name '*.py' -exec \
+        sed -i 's|^#!/usr/bin/env python|#!/usr/bin/env python2|' {} +
+    # sed -i 's|css/theme.min.css|css/theme.css|' \
+    #     "$srcdir/"ansible/docsite/_themes/srtd/theme.conf
 }
 
 build(){
-    LANG=en_US.UTF-8 python2 build-site.py make docs
+    make -C "$srcdir"/ansible webdocs
+    # cd "$srcdir/ansible/docsite"
+    # LANG=en_US.UTF-8 python2 build-site.py make docs
 }
 
 package() {
