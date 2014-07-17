@@ -1,0 +1,29 @@
+# Maintainer: 10sr <8slashes+pkgbuild [at] gmail [dot] com>
+
+pkgname=ansible-docs-git
+pkgdesc="Ansible HTML documantation"
+pkgver=20140717
+pkgrel=1
+arch=('any')
+url="https://github.com/ansible/ansible"
+license=('GPL3')                # true?
+options=('!strip')
+makedepends=('git' 'python2-sphinx')
+source=('git://github.com/ansible/ansible.git')
+md5sums=('SKIP')
+
+pkgver() {
+    date "+%Y%m%d"
+}
+
+prepare() {
+    cd "ansible/docsite"
+    # sed -i 's|^#!/usr/bin/env python|#!/usr/bin/env python2|' build-site.py
+    sed -i 's|css/theme.min.css|css/theme.css|' _themes/srtd/theme.conf
+    LANG=en_US.UTF-8 python2 build-site.py make docs
+}
+
+package() {
+    install -dm755 "$pkgdir/usr/share/doc/ansible/html"
+    cp -r "$srcdir"/ansible/docsite/htmlout/* "$pkgdir/usr/share/doc/ansible/html/"
+}
