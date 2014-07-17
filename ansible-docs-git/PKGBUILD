@@ -1,9 +1,9 @@
-# Maintainer: 10sr <8slashes+pkgbuild [at] gmail [dot] com>
+# Maintainer: 10sr <8slashes+arch [at] gmail [dot] com>
 
 pkgname=ansible-docs-git
 pkgdesc="Ansible HTML documantation"
 pkgver=20140717
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/ansible/ansible"
 license=('GPL3')                # true?
@@ -20,6 +20,9 @@ prepare() {
     cd "ansible/docsite"
     # sed -i 's|^#!/usr/bin/env python|#!/usr/bin/env python2|' build-site.py
     sed -i 's|css/theme.min.css|css/theme.css|' _themes/srtd/theme.conf
+}
+
+build(){
     LANG=en_US.UTF-8 python2 build-site.py make docs
 }
 
