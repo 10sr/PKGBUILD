@@ -19,14 +19,10 @@ pkgver() {
 prepare() {
     find "$srcdir"/ansible -name '*.py' -exec \
         sed -i 's|^#!/usr/bin/env python|#!/usr/bin/env python2|' {} +
-    # sed -i 's|css/theme.min.css|css/theme.css|' \
-    #     "$srcdir/"ansible/docsite/_themes/srtd/theme.conf
 }
 
 build(){
     make -C "$srcdir"/ansible webdocs
-    # cd "$srcdir/ansible/docsite"
-    # LANG=en_US.UTF-8 python2 build-site.py make docs
 }
 
 package() {
