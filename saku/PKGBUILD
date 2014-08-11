@@ -1,6 +1,6 @@
 # Maintainer: 10sr <your email>
 
-# TODO: add systemd service file
+# TODO: fix config.py (add patch? or add /etc/saku.ini?)
 
 pkgname=saku
 pkgver=4.2.0
@@ -19,13 +19,19 @@ optdepends=('python-pillow: Python Imaging Library')
 
 install=$pkgname.install
 
-source=("http://shingetsu.info/saku/$pkgname-$pkgver.tar.gz")
-md5sums=('418fc5d2b7efaa376145aa1d9fcc208a')
+source=(
+    "http://shingetsu.info/saku/$pkgname-$pkgver.tar.gz"
+    "$pkgname.service"
+)
+md5sums=('418fc5d2b7efaa376145aa1d9fcc208a'
+         'a8f885ae52f3db5fb9f9314246211cfc')
 
 package() {
-    cd $srcdir/${pkgname}-${pkgver}
+    cd "$srcdir"/$pkgname-$pkgver
     make clean
-    python3 setup.py install --root=${pkgdir}
+    python3 setup.py install --root="$pkgdir"
 
-    install -Dvm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    install -Dvm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
+    install -Dvm644 ../$pkgname.service \
+        "$pkgdir"/usr/lib/systemd/system/$pkgname.service
 }

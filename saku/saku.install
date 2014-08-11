@@ -9,6 +9,12 @@ post_install() {
     if ! getent passwd $_user >/dev/null; then
         useradd --system -c 'saku daemon user' -g $_user -d / -s /bin/bash $_user
     fi
+
+    if ! test -d /var/saku
+    then
+        mkdir -p /var/saku
+        chown ${_user}:${_user} /var/saku
+    fi
 }
 
 post_upgrade() {
