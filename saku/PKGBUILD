@@ -1,7 +1,6 @@
 # Maintainer: 10sr <your email>
 
 # TODO: add systemd service file
-# TODO: add install script to add shingetsu user or someone
 
 pkgname=saku
 pkgver=4.2.0
@@ -11,11 +10,14 @@ arch=('any')
 url="http://shingetsu.info/saku"
 license=('2-clause BSD license')
 #groups=allyourbase
+
 depends=('python3' 'python-jinja' 'python-markupsafe')
 optdepends=('python-pillow: Python Imaging Library')
 
 #provides=('lol-git')
-# conflicts=('pyful-git')
+#conflicts=('pyful-git')
+
+install=$pkgname.install
 
 source=("http://shingetsu.info/saku/$pkgname-$pkgver.tar.gz")
 md5sums=('418fc5d2b7efaa376145aa1d9fcc208a')
