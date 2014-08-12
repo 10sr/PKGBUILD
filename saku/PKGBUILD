@@ -11,7 +11,7 @@ url="http://shingetsu.info/saku"
 license=('2-clause BSD license')
 #groups=allyourbase
 
-depends=('python3' 'python-jinja' 'python-markupsafe')
+depends=('python' 'python-jinja' 'python-markupsafe')
 optdepends=('python-pillow: Python Imaging Library')
 
 #provides=('lol-git')
