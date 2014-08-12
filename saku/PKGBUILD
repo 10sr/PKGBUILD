@@ -22,11 +22,18 @@ install=$pkgname.install
 source=(
     "http://shingetsu.info/saku/$pkgname-$pkgver.tar.gz"
     "$pkgname.service"
+    "$pkgname.patch"
 )
 md5sums=('418fc5d2b7efaa376145aa1d9fcc208a'
-         'a8f885ae52f3db5fb9f9314246211cfc')
+         'a8f885ae52f3db5fb9f9314246211cfc'
+         '094ae2d9e64e0d445c616fae22b19051')
 
-package() {
+prepare(){
+    cd "$srcdir"/$pkgname-$pkgver
+    patch -p1 <../saku.patch
+}
+
+package(){
     cd "$srcdir"/$pkgname-$pkgver
     make clean
     python3 setup.py install --root="$pkgdir"

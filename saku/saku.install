@@ -10,11 +10,14 @@ post_install() {
         useradd --system -c 'saku daemon user' -g $_user -d / -s /bin/bash $_user
     fi
 
-    if ! test -d /var/saku
-    then
-        mkdir -p /var/saku
-        chown ${_user}:${_user} /var/saku
-    fi
+    for dir in /var/run/saku /var/cache/saku /var/log/saku
+    do
+        if ! test -d $dir
+        then
+            mkdir -p $dir
+            chown ${_user}:${_user} $dir
+        fi
+    done
 }
 
 post_upgrade() {
@@ -22,10 +25,15 @@ post_upgrade() {
 }
 
 post_remove() {
-    if getent passwd $_user >/dev/null; then
-        userdel $_user
-    fi
-    if getent group $_user >/dev/null; then
-        groupdel $_user
-    fi
+    cat <<__EOC__
+Directory and user are not deleted.
+To remove saku completely, remove directory '/var/saku', '/var/run/saku' and
+'/var/cache/saku', then delete user '$_user' and group '$_user'.
+__EOC__
+    # if getent passwd $_user >/dev/null; then
+    #     userdel $_user
+    # fi
+    # if getent group $_user >/dev/null; then
+    #     groupdel $_user
+    # fi
 }
