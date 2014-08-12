@@ -22,15 +22,15 @@ install=$pkgname.install
 source=(
     "http://shingetsu.info/saku/$pkgname-$pkgver.tar.gz"
     "$pkgname.service"
-    "$pkgname.patch"
+    "defaultpath.patch"
 )
 md5sums=('418fc5d2b7efaa376145aa1d9fcc208a'
-         'a8f885ae52f3db5fb9f9314246211cfc'
+         '405694a84e66e6043bb61188d5e766ac'
          '094ae2d9e64e0d445c616fae22b19051')
 
 prepare(){
     cd "$srcdir"/$pkgname-$pkgver
-    patch -p1 <../saku.patch
+    patch -p1 <../defaultpath.patch
 }
 
 package(){
