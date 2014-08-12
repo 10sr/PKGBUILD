@@ -26,8 +26,8 @@ post_upgrade() {
 
 post_remove() {
     cat <<__EOC__
-Directory and user are not deleted.
-To remove saku completely, remove directory '/var/saku', '/var/run/saku' and
+Directories and saku daemon user are not deleted.
+To remove saku completely, remove directory '/var/log/saku', '/var/run/saku' and
 '/var/cache/saku', then delete user '$_user' and group '$_user'.
 __EOC__
     # if getent passwd $_user >/dev/null; then
