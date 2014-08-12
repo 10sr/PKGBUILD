@@ -9,7 +9,7 @@ Develop and Upload PKGBUILDs
 -------------------
 
 * Some prototypes are found at `/usr/share/pacman`.
-* Issue `makepkg --source` to create tarball for uploading to
+* Issue `mkaurball` (which is provided by `pkgbuild-introspection`) to create tarball for uploading to
 [AUR](https://aur.archlinux.org/)
 
 
