@@ -24,7 +24,7 @@ source=(
 )
 md5sums=('418fc5d2b7efaa376145aa1d9fcc208a'
          '405694a84e66e6043bb61188d5e766ac'
-         'd3864ff8c668b02c08365b6a890c61ae')
+         '9145731b1725e92e6d9ee866ba03c7a2')
 
 prepare(){
     cd "$srcdir"/$pkgname-$pkgver
