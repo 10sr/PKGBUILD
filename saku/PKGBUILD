@@ -1,7 +1,5 @@
 # Maintainer: 10sr <your email>
 
-# TODO: fix config.py (add patch? or add /etc/saku.ini?)
-
 pkgname=saku
 pkgver=4.2.0
 pkgrel=1
@@ -26,7 +24,7 @@ source=(
 )
 md5sums=('418fc5d2b7efaa376145aa1d9fcc208a'
          '405694a84e66e6043bb61188d5e766ac'
-         '094ae2d9e64e0d445c616fae22b19051')
+         'd3864ff8c668b02c08365b6a890c61ae')
 
 prepare(){
     cd "$srcdir"/$pkgname-$pkgver

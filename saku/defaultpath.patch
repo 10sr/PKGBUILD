@@ -1,3 +1,22 @@
+When running saku as a system daemon (by systemd for example), the default
+directories provided by config.py do not indicate valid places (for example,
+./log for writing logs).
+There can be some options for solving this problem:
+
+* Do not "install", copy all files into one directory (like /opt/saku)
+* Provide default config file /etc/saku/saku.ini and set directories in that
+* Patch config.py and change the default directories
+
+Providing default /etc/saku/saku.ini seems to be the easiest way, but there is no
+use leaving the invalid pathes so I chose the third.
+
+By applying this patch saku gets to use these directories:
+
+* /var/run/saku
+* /var/cache/saku
+* /var/log/saku
+* /use/share/saku/{file,template}
+
 --- saku-4.2.0.orig/shingetsu/config.py	2014-06-17 09:38:09.000000000 +0900
 +++ saku-4.2.0/shingetsu/config.py	2014-08-12 02:15:01.633045490 +0900
 @@ -74,21 +74,21 @@
