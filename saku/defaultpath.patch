@@ -12,7 +12,7 @@ use leaving the invalid pathes so I chose the third.
 
 By applying this patch saku gets to use these directories:
 
-* /var/run/saku
+* /var/saku
 * /var/cache/saku
 * /var/log/saku
 * /use/share/saku/{file,template}
@@ -30,7 +30,7 @@ By applying this patch saku gets to use these directories:
 -cache_dir = _get_value(_extconf, 'Path', 'cache_dir', '../cache', 'path')
 +docroot = _get_value(_extconf, 'Path', 'docroot', '/usr/share/saku/www', 'path')
 +log_dir = _get_value(_extconf, 'Path', 'log_dir', '/var/log/saku', 'path')
-+run_dir = _get_value(_extconf, 'Path', 'run_dir', '/var/run/saku', 'path')
++run_dir = _get_value(_extconf, 'Path', 'run_dir', '/var/saku/run', 'path')
 +file_dir = _get_value(_extconf, 'Path', 'file_dir', '/usr/share/saku/file', 'path')
 +cache_dir = _get_value(_extconf, 'Path', 'cache_dir', '/var/cache/saku', 'path')
  template_dir = _get_value(_extconf, 'Path', 'template_dir',
