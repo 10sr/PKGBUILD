@@ -2,7 +2,7 @@
 
 pkgname=saku
 pkgver=4.2.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A clone of P2P anonymous BBS shinGETsu"
 arch=('any')
 url="http://shingetsu.info/saku"
