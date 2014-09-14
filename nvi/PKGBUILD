@@ -1,0 +1,44 @@
+# Maintainer: 10sr <8slashes+arch [at] gmail [dot] com>
+
+# NOT WORK!
+# Running makepkg fails with error 'no file truncation system call',
+# which won't happen from interactive shell.
+
+pkgname=nvi
+pkgver=1.79
+pkgrel=1
+pkgdesc="The Berkeley Vi Editor"
+arch=('i686' 'x86_64')
+url="https://sites.google.com/a/bostic.com/keithbostic/vi"
+license=('BSD')
+depends=('libtool' 'ncurses')
+# provides=('libcurl.so')
+# options=('strip' 'debug')
+source=("https://sites.google.com/a/bostic.com/keithbostic/files/$pkgname-$pkgver.tar.gz")
+md5sums=('765e2153f5fc4f21793f2edc2647305a')
+
+
+prepare(){
+  # http://www.yansite.jp/jnvi.html
+  cd "$pkgname-$pkgver"/build
+  cp -pf /usr/share/libtool/config/config.guess .
+  cp -pf /usr/share/libtool/config/config.sub .
+}
+
+build(){
+  cd "$pkgname-$pkgver"/build
+
+  pwd
+  ./configure --prefix=/usr --disable-curses --program-prefix=n
+  make
+}
+
+package(){
+  cd "$pkgname-$pkgver"/build
+
+  make DESTDIR="$pkgdir" install
+
+  # license
+  install -Dm644 "$pkgname-$pkgver"/COPYING \
+      "$pkgdir"/usr/share/licenses/$pkgname/COPYING
+}
