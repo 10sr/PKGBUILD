@@ -1,0 +1,18 @@
+# Maintainer: 10sr <8slashes+arch [at] gmail [dot] com>
+
+pkgname=crux-setup
+pkgver=3.1
+pkgrel=1
+pkgdesc="some setup scripts for installing CRUX"
+arch=('any')
+url="http://crux.nu"
+license=('GPL')
+source=("git://crux.nu/system/iso.git")
+md5sums=('SKIP')
+
+package(){
+  cd iso/iso/bin
+
+  install -Dm755 setup "$pkgdir"/usr/bin/crux-setup
+  install -Dm755 setup-chroot "$pkgdir"/usr/bin/crux-setup-chroot
+}
