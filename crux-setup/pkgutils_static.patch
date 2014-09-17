@@ -1,0 +1,15 @@
+diff -ru pkgutils-5.35.6/Makefile pkgutils-5.35.6.new/Makefile
+--- pkgutils-5.35.6/Makefile	2014-03-24 03:15:46.000000000 +0900
++++ pkgutils-5.35.6.new/Makefile	2014-09-17 19:32:11.808742961 +0900
+@@ -32,9 +32,9 @@
+ CXXFLAGS += -O2 -Wall -pedantic -D_GNU_SOURCE -DVERSION=\"$(VERSION)\" \
+ 	    -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+ 
+-LIBARCHIVELIBS := $(shell pkg-config --libs --static libarchive)
++LIBARCHIVELIBS := $(shell pkg-config --libs libarchive)
+ 
+-LDFLAGS += -static $(LIBARCHIVELIBS)
++LDFLAGS += $(LIBARCHIVELIBS)
+ 
+ OBJECTS = main.o pkgutil.o pkgadd.o pkgrm.o pkginfo.o
+ 

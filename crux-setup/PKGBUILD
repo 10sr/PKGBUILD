@@ -3,27 +3,44 @@
 pkgname=crux-setup
 pkgver=3.1
 pkgrel=1
-pkgdesc="some setup scripts for installing CRUX"
+pkgdesc="Some setup scripts for installing CRUX"
 arch=('any')
 url="http://crux.nu"
 depends=('dialog' 'rsync')
 license=('GPL')
-source=("git://crux.nu/system/iso.git" "path.patch" "crux-setup.sh")
+source=("git://crux.nu/system/iso.git"
+        "http://crux.nu/files/pkgutils-5.35.6.tar.gz"
+        "iso_path.patch"
+        "pkgutils_static.patch"
+        "crux-setup.sh")
 md5sums=('SKIP'
+         '5f4ba23340492548ebf58b0ce7109e69'
          'f54595c5cbd1f466db9537ee1eb404e0'
-         '40ddd1280e54378bf4ca8eea141e2f49')
+         'b67d1686059282ac38bb2a239bc28fab'
+         '17c76b80d2bb082516eb1b0bf931bb11')
 
 prepare(){
-    cd iso
-    patch -p1 <../path.patch
+    cd "$srcdir"/iso
+    patch -p1 <../iso_path.patch
+
+    cd "$srcdir"/pkgutils-5.35.6
+    patch -p1 <../pkgutils_static.patch
+}
+
+build(){
+    cd "$srcdir"/pkgutils-5.35.6
+    make pkgadd
 }
 
 package(){
 
+    cd "$srcdir"
     install -Dm755 crux-setup.sh "$pkgdir"/usr/bin/crux-setup
 
-    cd iso/iso/bin
+    cd "$srcdir"/pkgutils-5.35.6
+    install -Dm755 pkgadd "$pkgdir"/usr/lib/$pkgname/bin/pkgadd
 
-    install -Dm755 setup "$pkgdir"/usr/lib/$pkgname/setup
+    cd "$srcdir"/iso/iso/bin
+    install -Dm755 setup "$pkgdir"/usr/lib/$pkgname/bin/iso_setup
     install -Dm755 setup-chroot "$pkgdir"/usr/bin/crux-setup-chroot
 }

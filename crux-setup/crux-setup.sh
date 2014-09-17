@@ -10,4 +10,4 @@ mkdir -p /tmp/crux-setup/kernel
 
 rsync -av $mirror/loop/crux/core/ /tmp/crux-setup/core/
 
-exec /usr/lib/crux-setup/setup
+PATH=/usr/lib/crux-setup/bin:"$PATH" sudo /usr/lib/crux-setup/bin/iso_setup
