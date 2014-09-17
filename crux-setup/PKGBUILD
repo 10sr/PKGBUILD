@@ -17,7 +17,7 @@ md5sums=('SKIP'
          '5f4ba23340492548ebf58b0ce7109e69'
          'f54595c5cbd1f466db9537ee1eb404e0'
          'b67d1686059282ac38bb2a239bc28fab'
-         '17c76b80d2bb082516eb1b0bf931bb11')
+         '9ea5e258a6d61c132ceaaf807d98f83b')
 
 prepare(){
     cd "$srcdir"/iso

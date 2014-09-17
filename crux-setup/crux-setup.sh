@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+# TODO: fetch dependency file and kernel
+
 mirror=rsync://morpheus.net/crux
 
 mkdir -p /tmp/crux-setup/core
