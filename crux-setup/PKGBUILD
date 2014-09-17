@@ -11,7 +11,7 @@ license=('GPL')
 source=("git://crux.nu/system/iso.git" "path.patch" "crux-setup.sh")
 md5sums=('SKIP'
          'f54595c5cbd1f466db9537ee1eb404e0'
-         '8a4e801800f2faafc45dd3fe477ba6cb')
+         'f0bd1b95a1ccb77bfbf3d9b7940ced3e')
 
 prepare(){
     cd iso
