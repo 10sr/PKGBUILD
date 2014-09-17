@@ -6,11 +6,12 @@ pkgrel=1
 pkgdesc="some setup scripts for installing CRUX"
 arch=('any')
 url="http://crux.nu"
-depends=('dialog')
+depends=('dialog' 'rsync')
 license=('GPL')
-source=("git://crux.nu/system/iso.git" "path.patch")
+source=("git://crux.nu/system/iso.git" "path.patch" "crux-setup.sh")
 md5sums=('SKIP'
-         'f54595c5cbd1f466db9537ee1eb404e0')
+         'f54595c5cbd1f466db9537ee1eb404e0'
+         '8a4e801800f2faafc45dd3fe477ba6cb')
 
 prepare(){
     cd iso
@@ -18,8 +19,11 @@ prepare(){
 }
 
 package(){
-  cd iso/iso/bin
 
-  install -Dm755 setup "$pkgdir"/usr/bin/crux-setup
-  install -Dm755 setup-chroot "$pkgdir"/usr/bin/crux-setup-chroot
+    install -Dm755 crux-setup.sh "$pkgdir"/usr/bin/crux-setup
+
+    cd iso/iso/bin
+
+    install -Dm755 setup "$pkgdir"/usr/lib/$pkgname/setup
+    install -Dm755 setup-chroot "$pkgdir"/usr/bin/crux-setup-chroot
 }
