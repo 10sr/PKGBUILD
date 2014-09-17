@@ -6,9 +6,16 @@ pkgrel=1
 pkgdesc="some setup scripts for installing CRUX"
 arch=('any')
 url="http://crux.nu"
+depends=('dialog')
 license=('GPL')
-source=("git://crux.nu/system/iso.git")
-md5sums=('SKIP')
+source=("git://crux.nu/system/iso.git" "path.patch")
+md5sums=('SKIP'
+         'f54595c5cbd1f466db9537ee1eb404e0')
+
+prepare(){
+    cd iso
+    patch -p1 <../path.patch
+}
 
 package(){
   cd iso/iso/bin

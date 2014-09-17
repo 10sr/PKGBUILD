@@ -1,0 +1,17 @@
+diff -ru iso/iso/bin/setup iso.new/iso/bin/setup
+--- iso.old/iso/bin/setup	2014-09-17 02:35:34.764054494 +0900
++++ iso.new/iso/bin/setup	2014-09-17 15:01:36.105844091 +0900
+@@ -338,11 +338,11 @@
+ 		if [ $? -eq 0 ]
+ 		then
+ 			p=`echo $opt | cut -d= -f2`
+-			crux_dir=/media/${p}/crux
++			crux_dir=/tmp/${p}/crux-setup
+ 		fi
+ 	done
+ else
+-	crux_dir=/media/crux
++	crux_dir=/tmp/crux-setup
+ fi
+ 
+ # Detailed selection of packages
