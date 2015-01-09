@@ -29,7 +29,8 @@ build(){
     cd "$pkgname-$pkgver"/build
 
     pwd
-    ./configure --prefix=/usr --disable-curses --program-prefix=n
+    ./configure --prefix="$pkgdir"/usr --program-prefix=n \
+                --disable-curses --disable-db --disable-re
     make
 }
 
