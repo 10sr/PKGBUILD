@@ -1,0 +1,14 @@
+Fix Syntax Error in Makefile.in
+Actually I cannot understand why this could happen.
+
+--- nvi-1.79.orig/build/Makefile.in	1996-10-23 22:43:38.000000000 +0900
++++ nvi-1.79.copy/build/Makefile.in	2015-01-09 22:23:38.807927524 +0900
+@@ -140,7 +140,7 @@
+ 	@echo "Installing Perl scripts: $(datadir)/vi/perl ..."
+ 	$(mkdir) $(datadir)/vi/perl && $(chmod) $(dmode) $(datadir)/vi/perl
+ 	[ -f VI.pm ] && $(cp) VI.pm $(datadir)/vi/perl && \
+-	    cd $(datadir)/vi/perl && $(chmod) $(fmode) VI.pm)
++	    cd $(datadir)/vi/perl && $(chmod) $(fmode) VI.pm
+ 	(cd $(srcdir)/perl_scripts && $(cp) *.pl $(datadir)/vi/perl && \
+ 	    cd $(datadir)/vi/perl && $(chmod) $(fmode) *.pl)
+ 	@echo "Installing Tcl scripts: $(datadir)/vi/tcl ..."
