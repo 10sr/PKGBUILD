@@ -19,26 +19,26 @@ md5sums=('765e2153f5fc4f21793f2edc2647305a')
 
 
 prepare(){
-  # http://www.yansite.jp/jnvi.html
-  cd "$pkgname-$pkgver"/build
-  cp -pf /usr/share/libtool/config/config.guess .
-  cp -pf /usr/share/libtool/config/config.sub .
+    # http://www.yansite.jp/jnvi.html
+    cd "$pkgname-$pkgver"/build
+    cp -pf /usr/share/libtool/config/config.guess .
+    cp -pf /usr/share/libtool/config/config.sub .
 }
 
 build(){
-  cd "$pkgname-$pkgver"/build
+    cd "$pkgname-$pkgver"/build
 
-  pwd
-  ./configure --prefix=/usr --disable-curses --program-prefix=n
-  make
+    pwd
+    ./configure --prefix=/usr --disable-curses --program-prefix=n
+    make
 }
 
 package(){
-  cd "$pkgname-$pkgver"/build
+    cd "$pkgname-$pkgver"/build
 
-  make DESTDIR="$pkgdir" install
+    make DESTDIR="$pkgdir" install
 
-  # license
-  install -Dm644 "$pkgname-$pkgver"/COPYING \
-      "$pkgdir"/usr/share/licenses/$pkgname/COPYING
+    # license
+    install -Dm644 "$pkgname-$pkgver"/COPYING \
+            "$pkgdir"/usr/share/licenses/$pkgname/COPYING
 }
