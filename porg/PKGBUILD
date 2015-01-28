@@ -1,0 +1,56 @@
+# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: 10sr <8.slashes+arch [at] gmail [dot] com>
+pkgname=porg
+pkgver=0.7
+pkgrel=1
+epoch=
+pkgdesc='Aid management of software packages installed from source code (formerly known as paco)'
+arch=('i686' 'x86_64')
+url=""
+license=('GPL')
+groups=()
+depends=('gtkmm3')
+makedepends=('gtkmm3')
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=("http://downloads.sourceforge.net/project/$pkgname/$pkgname-$pkgver.tar.gz")
+noextract=()
+md5sums=('c098f64b639bdec44f2eb25a61a55f02')
+validpgpkeys=()
+
+prepare() {
+	cd "$pkgname-$pkgver"
+    true
+}
+
+build() {
+	cd "$pkgname-$pkgver"
+	./configure --prefix=/usr
+	make
+}
+
+check() {
+	cd "$pkgname-$pkgver"
+	make -k check
+}
+
+package() {
+	cd "$pkgname-$pkgver"
+	make DESTDIR="$pkgdir/" install
+
+    # This seems to be a make install bug
+    install -d "$pkgdir"/usr/share
+    cp -vr "$pkgdir"/"$pkgdir"/* "$pkgdir"
+    rm -vr "$pkgdir"/home
+}
