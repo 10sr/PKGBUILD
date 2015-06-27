@@ -1,0 +1,3 @@
+[submodule "saku"]
+	path = saku
+	url = ssh://aur@aur4.archlinux.org/saku.git
