@@ -6,7 +6,8 @@ pkgrel=1
 pkgdesc="Readline module for gauche REPL"
 arch=('i686' 'x86_64')
 url="http://www.netlab.is.tsukuba.ac.jp/~yokota/izumi/gauche/"
-license=('BSD')
+# What is the license??
+#license=('BSD')
 depends=('readline')
 #makedepends=('')
 # provides=('libcurl.so')
