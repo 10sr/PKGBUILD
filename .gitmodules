@@ -1,3 +1,6 @@
 [submodule "saku/saku"]
 	path = saku/saku
 	url = ssh://aur@aur4.archlinux.org/saku.git
+[submodule "ansible-docs-git/ansible-docs-git"]
+	path = ansible-docs-git/ansible-docs-git
+	url = ssh://aur@aur4.archlinux.org/ansible-docs-git.git
