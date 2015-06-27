@@ -21,3 +21,4 @@ refs
 * [PKGBUILD - ArchWiki](https://wiki.archlinux.org/index.php/Pkgbuild)
 * [Arch Packaging Standards - ArchWiki](https://wiki.archlinux.org/index.php/Arch_Packaging_Standards)
 * [Creating packages - ArchWiki](https://wiki.archlinux.org/index.php/Creating_packages)
+* [Arch User Repository - ArchWiki](https://wiki.archlinux.org/index.php/Arch_User_Repository)
