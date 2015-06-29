@@ -4,3 +4,6 @@
 [submodule "ansible-docs-git/ansible-docs-git"]
 	path = ansible-docs-git/ansible-docs-git
 	url = ssh://aur@aur4.archlinux.org/ansible-docs-git.git
+[submodule "neap-hotkey/neap-hotkey"]
+	path = neap-hotkey/neap-hotkey
+	url = ssh://aur@aur4.archlinux.org/neap-hotkey.git
