@@ -1,9 +1,9 @@
 [submodule "saku/saku"]
-	path = saku/saku
+	path = saku/aur
 	url = ssh://aur@aur4.archlinux.org/saku.git
 [submodule "ansible-docs-git/ansible-docs-git"]
-	path = ansible-docs-git/ansible-docs-git
+	path = ansible-docs-git/aur
 	url = ssh://aur@aur4.archlinux.org/ansible-docs-git.git
 [submodule "neap-hotkey/neap-hotkey"]
-	path = neap-hotkey/neap-hotkey
+	path = neap-hotkey/aur
 	url = ssh://aur@aur4.archlinux.org/neap-hotkey.git
