@@ -7,3 +7,6 @@
 [submodule "neap-hotkey/neap-hotkey"]
 	path = neap-hotkey/aur
 	url = ssh://aur@aur4.archlinux.org/neap-hotkey.git
+[submodule "gauche-readline/aur"]
+	path = gauche-readline/aur
+	url = ssh://aur@aur4.archlinux.org/gauche-readline.git
