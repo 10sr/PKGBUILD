@@ -30,8 +30,7 @@ prepare(){
 }
 
 build(){
-    unset COMMAND_MODE CXXFLAGS LDFLAGS CPPFLAGS CFLAGS CHOST TEXTDOMAIN TEXTDOMAINDIR
-    env
+    export CPPFLAGS="${CPPFLAGS} -U_FORTIFY_SOURCE"
     cd "$srcdir"/"$pkgname"-"$pkgver"/build
     ./configure --prefix="$pkgdir"/usr --program-prefix=n \
                 --disable-curses --disable-re
