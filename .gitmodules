@@ -10,3 +10,6 @@
 [submodule "gauche-readline/aur"]
 	path = gauche-readline/aur
 	url = ssh://aur@aur.archlinux.org/gauche-readline.git
+[submodule "nvi/aur"]
+	path = nvi/aur
+	url = ssh://aur@aur.archlinux.org/nvi.git
