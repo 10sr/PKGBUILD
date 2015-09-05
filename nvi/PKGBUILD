@@ -17,7 +17,7 @@ depends=('libtool' 'ncurses')
 source=("https://sites.google.com/a/bostic.com/keithbostic/files/$pkgname-$pkgver.tar.gz"
        "fixsyntaxerror.patch")
 md5sums=('765e2153f5fc4f21793f2edc2647305a'
-         'b86ca988c352d122113390d769ff95c9')
+         'c57d0dfb738d292d95a547029b6f6c86')
 
 
 prepare(){
@@ -30,10 +30,11 @@ prepare(){
 }
 
 build(){
+    unset COMMAND_MODE CXXFLAGS LDFLAGS CPPFLAGS CFLAGS CHOST TEXTDOMAIN TEXTDOMAINDIR
+    env
     cd "$srcdir"/"$pkgname"-"$pkgver"/build
-
     ./configure --prefix="$pkgdir"/usr --program-prefix=n \
-                --disable-curses --disable-db --disable-re
+                --disable-curses --disable-re
     make
 }
 
@@ -43,6 +44,6 @@ package(){
     make install
 
     # license
-    install -Dm644 "$srcdir"/"$pkgname"-"$pkgver"/COPYING \
-            "$pkgdir"/usr/share/licenses/$pkgname/COPYING
+    install -Dm644 "$srcdir"/"$pkgname"-"$pkgver"/LICENSE \
+            "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
