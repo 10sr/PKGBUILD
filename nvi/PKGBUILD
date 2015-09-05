@@ -1,9 +1,5 @@
 # Maintainer: 10sr <8slashes+arch [at] gmail [dot] com>
 
-# NOT WORK!
-# Running makepkg fails with error 'no file truncation system call',
-# which won't happen from interactive shell.
-
 pkgname=nvi
 pkgver=1.79
 pkgrel=1
@@ -12,28 +8,26 @@ arch=('i686' 'x86_64')
 url="https://sites.google.com/a/bostic.com/keithbostic/vi"
 license=('BSD')
 depends=('libtool' 'ncurses')
-# provides=('libcurl.so')
-# options=('strip' 'debug')
 source=("https://sites.google.com/a/bostic.com/keithbostic/files/$pkgname-$pkgver.tar.gz"
-       "fixsyntaxerror.patch")
+       "fixerrors.patch")
 md5sums=('765e2153f5fc4f21793f2edc2647305a'
-         'b86ca988c352d122113390d769ff95c9')
+         'c57d0dfb738d292d95a547029b6f6c86')
 
 
 prepare(){
     # http://www.yansite.jp/jnvi.html
     cd "$srcdir"/"$pkgname"-"$pkgver"
-    patch -p1 <../fixsyntaxerror.patch
+    patch -p1 <../fixerrors.patch
     cd "$srcdir"/"$pkgname"-"$pkgver"/build
     cp -pf /usr/share/libtool/build-aux/config.guess .
     cp -pf /usr/share/libtool/build-aux/config.sub .
 }
 
 build(){
+    export CPPFLAGS="${CPPFLAGS} -U_FORTIFY_SOURCE"
     cd "$srcdir"/"$pkgname"-"$pkgver"/build
-
     ./configure --prefix="$pkgdir"/usr --program-prefix=n \
-                --disable-curses --disable-db --disable-re
+                --disable-curses --disable-re
     make
 }
 
@@ -43,6 +37,6 @@ package(){
     make install
 
     # license
-    install -Dm644 "$srcdir"/"$pkgname"-"$pkgver"/COPYING \
-            "$pkgdir"/usr/share/licenses/$pkgname/COPYING
+    install -Dm644 "$srcdir"/"$pkgname"-"$pkgver"/LICENSE \
+            "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
