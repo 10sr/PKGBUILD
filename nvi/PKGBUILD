@@ -15,7 +15,7 @@ depends=('libtool' 'ncurses')
 # provides=('libcurl.so')
 # options=('strip' 'debug')
 source=("https://sites.google.com/a/bostic.com/keithbostic/files/$pkgname-$pkgver.tar.gz"
-       "fixsyntaxerror.patch")
+       "fixerrors.patch")
 md5sums=('765e2153f5fc4f21793f2edc2647305a'
          'c57d0dfb738d292d95a547029b6f6c86')
 
@@ -23,7 +23,7 @@ md5sums=('765e2153f5fc4f21793f2edc2647305a'
 prepare(){
     # http://www.yansite.jp/jnvi.html
     cd "$srcdir"/"$pkgname"-"$pkgver"
-    patch -p1 <../fixsyntaxerror.patch
+    patch -p1 <../fixerrors.patch
     cd "$srcdir"/"$pkgname"-"$pkgver"/build
     cp -pf /usr/share/libtool/build-aux/config.guess .
     cp -pf /usr/share/libtool/build-aux/config.sub .
