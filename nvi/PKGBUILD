@@ -1,9 +1,5 @@
 # Maintainer: 10sr <8slashes+arch [at] gmail [dot] com>
 
-# NOT WORK!
-# Running makepkg fails with error 'no file truncation system call',
-# which won't happen from interactive shell.
-
 pkgname=nvi
 pkgver=1.79
 pkgrel=1
@@ -12,8 +8,6 @@ arch=('i686' 'x86_64')
 url="https://sites.google.com/a/bostic.com/keithbostic/vi"
 license=('BSD')
 depends=('libtool' 'ncurses')
-# provides=('libcurl.so')
-# options=('strip' 'debug')
 source=("https://sites.google.com/a/bostic.com/keithbostic/files/$pkgname-$pkgver.tar.gz"
        "fixerrors.patch")
 md5sums=('765e2153f5fc4f21793f2edc2647305a'
